@@ -1,7 +1,6 @@
 {
   "name": "spielwiese",
   "homepage": "https://schrulnz.github.io/spielwiese-react/",
-  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "gh-pages": "^2.2.0",
@@ -9,14 +8,14 @@
     "react-dom": "^16.2.0",
     "react-mdl": "^1.11.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "react-scripts": "1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

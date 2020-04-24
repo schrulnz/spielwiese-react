@@ -3,25 +3,12 @@ import { Grid, Cell } from 'react-mdl';
 import Button from './Button';
 
 const KratzyWordtz = () => {
+  
   return (
-    <div className="landing-grid" style={{ width: '100%', margin: 'auto' }}>
-      Kratzy Wordtz
-      <div>
-        <Button />
-      </div>
+    <div className="simple-activity-grid">
+      <p className="large-text">Kratzy Wordtz</p>
+      <p className="large-text"></p>
     </div>
-
-
-    // <div style={{ width: '100%', margin: 'auto' }}>
-    //   <Grid className="landing-grid">
-    //     <Cell col={12}>
-    //       Kratzy Wordtz
-    //   <div>
-    //         <Button />
-    //       </div>
-    //     </Cell>
-    //   </Grid>
-    // </div>
   );
 }
 

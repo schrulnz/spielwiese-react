@@ -2,10 +2,10 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <header>
-     <h1> Homescreen </h1>
-    </header>
-
+    <div className="simple-activity-grid">
+      <p className="large-text">Home</p>
+      <p className="large-text"></p>
+    </div>
   );
 }
 

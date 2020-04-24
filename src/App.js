@@ -22,7 +22,7 @@ class App extends Component {
             <Navigation>
               <Link to="/simpleactivity">Simple Activity</Link>
               <Link to="/kratzywordtz">Kratzy Wordtz</Link>
-              <Link to="/landingpage">Landing Page</Link>
+              {/* <Link to="/landingpage">Landing Page</Link> */}
               {/* <Link to="/projects">Projects</Link> */}
               {/* <Link to="/contact">Contact</Link> */}
             </Navigation>
