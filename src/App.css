@@ -1,13 +1,16 @@
 .header-color {
-  background: #833ab4;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #ff4a00;  /* fallback for old browsers */
+  background:linear-gradient(to right, #ffa500, #ff4a00);
+}
+
+.header-color:hover {
+  background-color: #000050;
+  color: #ffffff;
 }
 
 .landing-grid {
-  background: #833ab4;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #ff4a00;  /* fallback for old browsers */
+  background:linear-gradient(to right, #ffa500, #ff4a00);
   text-align: center;
   position: fixed;
   top: 0;
@@ -16,8 +19,25 @@
   height: 100%;
 }
 
+.simple-activity-grid {
+  background: #ff4a00;  /* fallback for old browsers */
+  background:linear-gradient(to right, #ffa500, #ff4a00);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 .projects-grid {
   display: flex;
+}
+
+.large-text {
+  font-size: 3rem;
 }
 
 /* Resume Page css */

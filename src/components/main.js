@@ -14,6 +14,7 @@ import Home from './Home';
 const Main = () => (
   <Switch>
     <Route exact path="/" component={Home} />
+    <Route exact path="/landingpage" component={LandingPage} />
     <Route path="/simpleactivity" component={SimpleActivity} />
     <Route path="/kratzywordtz" component={KratzyWordtz} />
     <Route path="/projects" component={Projects} />

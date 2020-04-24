@@ -1,8 +1,23 @@
-.spielstart{
-    width: 12em;
-    height: 3em;
-    border-radius: 10px;
-    font-size: 0.8em;
-    margin: 0.3em;
+.spielstart {
+    width: 12rem;
+    height: 3rem;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    margin: 0.3rem;
     cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.spielstart:hover {
+    background-color: #ffd6c5; 
+}
+
+.spielstart:active {
+    background-color: #000050;
+    color: #ffffff;
+}
+
+.spielstart:focus {
+    
 }
