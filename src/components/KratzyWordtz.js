@@ -32,7 +32,7 @@ class KratzyWordtz extends Component {
               <p className="large-text">{this.state.vowsText}</p>
               <p className="large-text">{this.state.descText}</p>
             </div>
-            <Button name="Spiel beginnen" onClick={() => {
+            <Button name="Spiel beginnen" className="default-button" onClick={() => {
               this.loadTask();
               this.updateGameState();
             }} />
@@ -60,7 +60,7 @@ class KratzyWordtz extends Component {
               </button>
             </div>
             {/* Card for the Word */}
-            <Button name="Absenden" onClick={this.updateGameState} />
+            <Button name="Absenden" className="default-button" onClick={this.updateGameState} />
           </div>
         );
         break;

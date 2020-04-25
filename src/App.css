@@ -91,3 +91,23 @@
   background-color: #000050;
   color: #ffffff;
 }
+
+.ClickableCard {
+  padding: 2em 3em 1em 3em;
+  margin: 2em;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 10px black;
+  transition: all .2s ease-in-out; 
+}
+
+.ClickableCard:hover {
+  transform: scale(1.02);
+}
+
+.TextCard {
+  background-color: white;
+  padding: 2em 3em 1em 3em;
+  margin: 3em;
+  box-shadow: 0 0 10px black;
+}
