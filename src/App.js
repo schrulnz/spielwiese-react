@@ -13,24 +13,24 @@ class App extends Component {
     return (
       <div className="demo-big-content">
         <Layout>
-          <Header className="header-color" title={<Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+          <Header className="header-color" title={<Link style={{ textDecoration: 'none', color: 'white' }} to="/spielwiese-react">
             <img
               src={logoIcon}
               alt="logo"
               className="logo-icon"
             /></Link>} scroll>
             <Navigation>
-              <Link to="/simpleactivity">Simple Activity</Link>
-              <Link to="/kratzywordtz">Kratzy Wordtz</Link>
+              <Link to="/spielwiese-react/simpleactivity">Simple Activity</Link>
+              <Link to="/spielwiese-react/kratzywordtz">Kratzy Wordtz</Link>
               {/* <Link to="/landingpage">Landing Page</Link> */}
               {/* <Link to="/projects">Projects</Link> */}
               {/* <Link to="/contact">Contact</Link> */}
             </Navigation>
           </Header>
-          <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }} to="/">MyPortfolio</Link>}>
+          <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }} to="/spielwiese-react">MyPortfolio</Link>}>
             <Navigation>
-              <Link to="/simpleactivity">Simple Activity</Link>
-              <Link to="/kratzywordtz">Kratzy Wordtz</Link>
+              <Link to="/spielwiese-react/simpleactivity">Simple Activity</Link>
+              <Link to="/spielwiese-react/kratzywordtz">Kratzy Wordtz</Link>
               {/* <Link to="/projects">Projects</Link> */}
               {/* <Link to="/contact">Contact</Link> */}
             </Navigation>
