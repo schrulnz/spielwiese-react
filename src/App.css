@@ -49,6 +49,16 @@
   font-size: 2.5rem;
 }
 
+.activity-image-container {
+  height: 100px;
+  /* display: flex; */
+}
+
+.activity-image {
+  width: 150px;
+  /* display: flex; */
+}
+
 
 /* Button */
 

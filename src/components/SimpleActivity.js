@@ -53,7 +53,9 @@ class SimpleActivity extends Component {
         <div className="default-background">
           <div>
             <TextCard name={this.state.wordText} className="large-text" />
-            <img src={this.state.picUrl} width='100px' alt={this.state.categoryText} />
+            <div className="activity-image-container">
+              <img src={this.state.picUrl} className="activity-image" alt={this.state.categoryText} />
+            </div>
           </div>
           <Button name="Neues Wort" onClick={this.getActivity} className="default-button" />
         </div>
