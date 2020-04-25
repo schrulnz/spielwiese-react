@@ -102,17 +102,26 @@
   color: #ffffff;
 }
 
-.ClickableCard {
+.clickableCard {
   padding: 2em 3em 1em 3em;
   margin: 2em;
   cursor: pointer;
   border-radius: 5px;
   box-shadow: 0 0 10px black;
-  transition: all .2s ease-in-out; 
+  transition: all .1s ease-in-out;
+  border: none;
+  outline: none;
 }
 
-.ClickableCard:hover {
-  transform: scale(1.02);
+.clickableCard:hover {
+  transform: scale(1.03);
+}
+
+.select-result-grid {
+  /* gap: 0% 15%; */
+  display: grid;
+  grid-template-columns: 1fr  1fr;
+  justify-items: stretch;
 }
 
 .TextCard {
@@ -121,8 +130,9 @@
   margin: 3em;
   box-shadow: 0 0 10px black;
   min-width: 250px;
+  border: none;
+  outline: none;
 }
-
 
 
 

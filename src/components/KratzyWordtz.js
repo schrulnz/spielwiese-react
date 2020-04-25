@@ -11,7 +11,9 @@ class KratzyWordtz extends Component {
     this.state = {
       consText: 'Unten klicken,',
       descText: 'um das Spiel zu starten',
-      gameState: 0
+      gameState: 0,
+      cardStyle: [],
+      roundWords: [{}, {}]
     };
   }
 
@@ -21,6 +23,23 @@ class KratzyWordtz extends Component {
     const data = await response.json();
     console.log(data);
     this.setState({ consText: 'Konsonanten: ' + data.consonants, vowsText: 'Vokale: ' + data.vowels, descText: 'Beschreibung: ' + data.desc });
+  }
+
+  loadRoundWords = async () => {
+    const getUrl = 'https://fierce-hollows-70925.herokuapp.com/kratzywordtz/state';
+    const response = await fetch(getUrl);
+    const data = await response.json();
+    console.log(data);
+    this.setState({ roundWords: data });
+  }
+
+  updateGameState = () => {
+    const gameState = this.state.gameState;
+    if (gameState < 3) {
+      this.setState({ gameState: gameState + 1 });
+    } else {
+      this.setState({ gameState: 1 });
+    }
   }
 
   renderGame = () => {
@@ -49,7 +68,7 @@ class KratzyWordtz extends Component {
               <p className="large-text">{this.state.descText}</p>
             </div>
             <div>
-              <ClickableCard name={this.state.wordText} className="large-text" />
+              <ClickableCard name={"y"} className="large-text" />
             </div>
             <div>
               <button
@@ -64,21 +83,57 @@ class KratzyWordtz extends Component {
               </button>
             </div>
             {/* Card for the Word */}
-            <Button name="Absenden" className="default-button" onClick={this.updateGameState} />
+            <Button name="Absenden" className="default-button" onClick={() => {
+              this.updateGameState();
+              this.loadRoundWords();
+            }} />
           </div>
         );
         break;
       case 2:
         return (
           <div>
-            <p className="large-text">{"Test Game State 2"}</p>
+            <div className="select-result-grid">
+              <p className="large-text">Wort</p>
+              <p className="large-text">Bezeichnung</p>
+              <ClickableCard name={this.state.roundWords[0].word} className="large-text" onClick={() => {
+                const cs = this.state.cardStyle;
+                cs[0] = "#78cf7c";
+                this.setState({
+                  cardStyle: cs
+                })
+              }}
+                style={{ backgroundColor: this.state.cardStyle[0] }} />
+              <ClickableCard name={this.state.roundWords[0].desc} className="large-text" onClick={() => {
+                const cs = this.state.cardStyle;
+                cs[1] = "#78cf7c";
+                this.setState({
+                  cardStyle: cs
+                })
+              }}
+                style={{ backgroundColor: this.state.cardStyle[1] }} />
+              <ClickableCard name={"xyzjuheeeeeeee"} className="large-text" />
+              <ClickableCard name={"alphabeeeeeeet"} className="large-text" />
+              <ClickableCard name={"bllub"} className="large-text" />
+              <ClickableCard name={"xbbbbbbbbbbb"} className="large-text" />
+              <ClickableCard name={"asdfasdfasdfas"} className="large-text" />
+              <ClickableCard name={"asdfasdfasdfasdfasdf"} className="large-text" />
+            </div>
+            <div>
+              <Button name="Bestätigen" className="default-button" onClick={this.updateGameState} />
+            </div>
           </div>
         );
         break;
       case 3:
         return (
           <div>
-            <p className="large-text">{"Test Game State 3"}</p>
+            <p className="large-text">{"Punktestand: ..."}</p>
+            <Button name="Neue Runde" className="default-button" onClick={() => {
+              this.setState({ consText: '', vowsText: '', descText: '' });
+              this.updateGameState();
+              this.loadTask();
+            }} />
           </div>
         );
         break;
@@ -89,18 +144,7 @@ class KratzyWordtz extends Component {
     }
   }
 
-  updateGameState = () => {
-    const gameState = this.state.gameState;
-    if (gameState < 3) {
-      this.setState({ gameState: gameState + 1 });
-    } else {
-      this.setState({ gameState: 0 });
-    }
-
-  }
-
   render() {
-
 
     return (
       <div className="default-background">
