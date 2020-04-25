@@ -8,7 +8,7 @@ const Button = (props) => {
 			<form method="GET">
 				<button
 					type="button"
-					className="spielstart"
+					className={props.className}
 					onClick={props.onClick}>
 					{props.name}
 				</button>
