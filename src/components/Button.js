@@ -1,5 +1,4 @@
 import React from 'react';
-import './Button.css';
 
 const Button = (props) => {
 
@@ -8,7 +7,7 @@ const Button = (props) => {
 			<form method="GET">
 				<button
 					type="button"
-					className="spielstart"
+					className="default-button"
 					onClick={props.onClick}>
 					{props.name}
 				</button>

@@ -3,11 +3,6 @@
   background:linear-gradient(to right, #ffa500, #ff4a00);
 }
 
-.header-color:hover {
-  background-color: #000050;
-  color: #ffffff;
-}
-
 
 .landing-grid {
   background: #ff4a00;  /* fallback for old browsers */
@@ -33,6 +28,19 @@
   height: 100%;
 }
 
+.kratzywordtz-default {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-icon {
+  height: 40px;
+  /* padding-top: 5em; */
+}
+
 .projects-grid {
   display: flex;
 }
@@ -41,98 +49,45 @@
   font-size: 2.5rem;
 }
 
-/* Resume Page css */
-.resume-right-col {
-  background: #27221F;
-  color: white;
-  padding: 2em;
+
+/* Button */
+
+.default-button {
+  width: 16rem;
+  height: 4rem;
+  border-radius: 5rem;
+  font-size: 2rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
-/* contact page css */
-
-.contact-body {
-  margin: auto;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  padding-top: 2em;
+.default-button:hover {
+  background-color: #ffd6c5; 
 }
 
-.contact-grid {
-  text-align: center;
-  justify-content: center;
-  width: 80%;
-  height: 550px;
-  background: white;
-  color: black;
-  margin-bottom: 20px;
+.default-button:active {
+  background-color: #000050;
+  color: #ffffff;
 }
 
-.contact-grid h2 {
-  font-family: 'Anton', sans-serif;
+.icon-button {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 5rem;
+  font-size: 2rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
-.contact-grid p {
-  font-family: 'Oxygen', sans-serif;
-  font-weight: bold;
+.icon-button:hover {
+  background-color: #ffd6c5; 
 }
 
-.contact-grid hr {
-  border-top: 5px dotted black;
-  width: 50%;
-  margin: auto;
+.icon-button:active {
+  background-color: #000050;
+  color: #ffffff;
 }
-
-.contact-list i {
-  font-size: 66px;
-  padding-right: 5rem;
-}
-
-
-/* contact page css */
-
-.logo-icon {
-  height: 40px;
-  /* padding-top: 5em; */
-}
-
-.banner-text {
-  background-color: black;
-  opacity: .8;
-  width: 75%;
-  margin: auto;
-  border-radius: 10px;
-}
-
-.banner-text h1 {
-  font-size: 66px;
-  font-weight: bold;
-  color: white;
-}
-
-.banner-text hr {
-  border-top: 5px dotted white;
-  width: 50%;
-  margin: auto;
-}
-
-.banner-text p {
-  color: white;
-  font-size: 20px;
-  padding: 1em;
-}
-
-.social-links {
-  display: flex;
-  justify-content: space-between;
-  width: 50%;
-  margin: auto;
-}
-
-.social-links i {
-  color: white;
-  font-size: 5em;
-  padding: 8px;
-}
-
