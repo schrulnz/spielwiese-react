@@ -24,29 +24,41 @@ class SimpleActivity extends Component {
     const data = await response.json();
 
     let pic = '';
-    switch (data.category){
+    switch (data.category) {
       case "paint": pic = paintPic;
-                  break;
+        break;
       case "pantomime": pic = pantomimePic;
-                  break;
+        break;
       case "describe": pic = describePic;
-                  break;
+        break;
       default: pic = "";
     }
 
-    this.setState({ wordText: data.word, categoryText:  data.category, picUrl: pic});
+    this.setState({ wordText: data.word, categoryText: data.category, picUrl: pic });
   }
 
   render() {
-    return (
-      <div className="default-background">
-        <div>
-          <TextCard name={this.state.wordText} className="large-text"/>
-          <img src={this.state.picUrl} width='100px' alt={this.state.categoryText} />
+    if (this.state.picUrl === '') {
+      return (
+        <div className="default-background">
+          <div>
+            <h1>Simple Activity</h1>
+            <h2>Gleich geht's los!</h2>
+          </div>
+          <Button name="Spiel starten" onClick={this.getActivity} className="default-button" />
         </div>
-        <Button name="Neues Wort" onClick={this.getActivity} className="default-button"/>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="default-background">
+          <div>
+            <TextCard name={this.state.wordText} className="large-text" />
+            <img src={this.state.picUrl} width='100px' alt={this.state.categoryText} />
+          </div>
+          <Button name="Neues Wort" onClick={this.getActivity} className="default-button" />
+        </div>
+      );
+    }
   }
 }
 
