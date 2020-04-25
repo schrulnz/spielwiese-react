@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
 import Button from './Button';
 import ClickableCard from './ClickableCard';
+import TextCard from './TextCard';
 import backspaceIcon from '../resources/images/icons/backspace_100px.png';
 
 class KratzyWordtz extends Component {
@@ -13,16 +14,19 @@ class KratzyWordtz extends Component {
       descText: 'um das Spiel zu starten',
       gameState: 0,
       cardStyle: [],
-      roundWords: [{}, {}]
+      roundWords: [{}, {}],
+      dataCons: [],
+      dataVows: []
     };
   }
+
 
   loadTask = async () => {
     const getWordUrl = 'https://fierce-hollows-70925.herokuapp.com/kratzywordtz/new-round';
     const response = await fetch(getWordUrl);
     const data = await response.json();
     console.log(data);
-    this.setState({ consText: 'Konsonanten: ' + data.consonants, vowsText: 'Vokale: ' + data.vowels, descText: 'Beschreibung: ' + data.desc });
+    this.setState({ consText: 'Konsonanten: ' + data.consonants, vowsText: 'Vokale: ' + data.vowels, descText: 'Beschreibung: ' + data.desc, dataCons: data.consonants, dataVows: data.vowels });
   }
 
   loadRoundWords = async () => {
@@ -60,17 +64,28 @@ class KratzyWordtz extends Component {
         );
         break;
       case 1:
+        let cards = [];
+        let i = 0;
+        let j = 0;
+        while (i < this.state.dataCons.length) {
+          cards.push(<ClickableCard name={this.state.dataCons[i]} className="large-text" id={"0" + i} />);
+          i++;
+        };
+        while (j < this.state.dataVows.length) {
+          cards.push(<ClickableCard name={this.state.dataVows[j]} className="large-text" id={"1" + j} />);
+          j++;
+        };
+
         return (
           <div className="kratzywordtz-default">
             <div>
-              <p className="large-text">{this.state.consText}</p>
-              <p className="large-text">{this.state.vowsText}</p>
               <p className="large-text">{this.state.descText}</p>
+              <div>
+                {cards}
+              </div>
             </div>
-            <div>
-              <ClickableCard name={"y"} className="large-text" />
-            </div>
-            <div>
+            <div className="eingabe">
+              <TextCard name={this.state.wordText} className="eingabefeld" />
               <button
                 type="button"
                 className="icon-button"
