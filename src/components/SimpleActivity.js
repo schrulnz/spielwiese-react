@@ -15,7 +15,7 @@ class SimpleActivity extends Component {
     const getWordUrl = 'https://fierce-hollows-70925.herokuapp.com/activity/word';
     const response = await fetch(getWordUrl);
     const data = await response.json();
-    this.setState({ wordText: data.word, categoryText: data.category })
+    this.setState({ wordText: 'Wort: ' + data.word, categoryText: 'Kategorie: ' + data.category })
   }
 
   render() {
@@ -23,8 +23,8 @@ class SimpleActivity extends Component {
     return (
       <div className="simple-activity-grid">
         <div>
-          <p className="large-text">Wort: {this.state.wordText}</p>
-          <p className="large-text">Kategorie: {this.state.categoryText}</p>
+          <p className="large-text">{this.state.wordText}</p>
+          <p className="large-text">{this.state.categoryText}</p>
         </div>
         <Button name="Neues Wort" onClick={this.getActivity} />
       </div>

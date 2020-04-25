@@ -1,8 +1,8 @@
 .spielstart {
-    width: 12rem;
-    height: 3rem;
+    width: 16rem;
+    height: 4rem;
     border-radius: 5rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 0.3rem;
     cursor: pointer;
     border: none;
