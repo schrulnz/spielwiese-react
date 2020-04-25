@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
-import Main from './components/main';
+import Main from './components/Main';
 import { Link } from 'react-router-dom';
 import logoIcon from './resources/images/logo/logo_small_icon_only.png';
 import logoLarge from './resources/images/logo/logo_large.png';
