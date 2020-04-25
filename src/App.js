@@ -28,17 +28,12 @@ class App extends Component {
             <Navigation>
               <Link to="/spielwiese-react/simpleactivity/">Simple Activity</Link>
               <Link to="/spielwiese-react/kratzywordtz/">Kratzy Wordtz</Link>
-              {/* <Link to="/landingpage">Landing Page</Link> */}
-              {/* <Link to="/projects">Projects</Link> */}
-              {/* <Link to="/contact">Contact</Link> */}
             </Navigation>
           </Header>
           <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }} to="/spielwiese-react/">Spielwiese</Link>}>
             <Navigation>
               <Link to="/spielwiese-react/simpleactivity/" onClick={() => this.hideToggle()}>Simple Activity</Link>
               <Link to="/spielwiese-react/kratzywordtz/" onClick={() => this.hideToggle()}>Kratzy Wordtz</Link>
-              {/* <Link to="/projects">Projects</Link> */}
-              {/* <Link to="/contact">Contact</Link> */}
             </Navigation>
           </Drawer>
           <Content>

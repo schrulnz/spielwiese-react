@@ -8,6 +8,7 @@
   color: #ffffff;
 }
 
+
 .landing-grid {
   background: #ff4a00;  /* fallback for old browsers */
   background:linear-gradient(to right, #ffa500, #ff4a00);
@@ -19,8 +20,8 @@
   height: 100%;
 }
 
-.simple-activity-grid {
-  background: #ff4a00;  /* fallback for old browsers */
+.default-background {
+  background: #ff4a00;   /*fallback for old browsers */
   background:linear-gradient(to right, #ffa500, #ff4a00);
   text-align: center;
   display: flex;
@@ -134,3 +135,4 @@
   font-size: 5em;
   padding: 8px;
 }
+

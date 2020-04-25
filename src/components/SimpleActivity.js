@@ -21,7 +21,7 @@ class SimpleActivity extends Component {
   render() {
 
     return (
-      <div className="simple-activity-grid">
+      <div className="default-background">
         <div>
           <p className="large-text">{this.state.wordText}</p>
           <p className="large-text">{this.state.categoryText}</p>
