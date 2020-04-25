@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
 import Button from './Button';
+import ClickableCard from './ClickableCard';
 import backspaceIcon from '../resources/images/icons/backspace_100px.png';
 
 class KratzyWordtz extends Component {
@@ -48,6 +49,9 @@ class KratzyWordtz extends Component {
               <p className="large-text">{this.state.descText}</p>
             </div>
             <div>
+              <ClickableCard name={this.state.wordText} className="large-text" />
+            </div>
+            <div>
               <button
                 type="button"
                 className="icon-button"
@@ -80,9 +84,7 @@ class KratzyWordtz extends Component {
         break;
       default:
         return (
-          <div>
-
-          </div>
+          <div />
         );
     }
   }
