@@ -6,8 +6,8 @@ class SimpleActivity extends Component {
   constructor() {
     super();
     this.state = {
-      wordText: '',
-      categoryText: ''
+      wordText: 'Simple Activity',
+      categoryText: 'Wortgenerator'
     };
   }
 
