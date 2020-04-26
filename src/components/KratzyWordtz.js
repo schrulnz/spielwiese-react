@@ -10,13 +10,13 @@ class KratzyWordtz extends Component {
   constructor() {
     super();
     this.state = {
-      consText: 'Unten klicken,',
-      descText: 'um das Spiel zu starten',
+      descText: '',
       gameState: 0,
       cardStyle: [],
+      charCardStyle: [],
       roundWords: [{}, {}],
-      dataCons: [],
-      dataVows: []
+      dataChars: [],
+      createdWord: []
     };
   }
 
@@ -25,8 +25,10 @@ class KratzyWordtz extends Component {
     const getWordUrl = 'https://fierce-hollows-70925.herokuapp.com/kratzywordtz/new-round';
     const response = await fetch(getWordUrl);
     const data = await response.json();
-    console.log(data);
-    this.setState({ consText: 'Konsonanten: ' + data.consonants, vowsText: 'Vokale: ' + data.vowels, descText: 'Beschreibung: ' + data.desc, dataCons: data.consonants, dataVows: data.vowels });
+    this.setState({
+      descText: 'Beschreibung: ' + data.desc, 
+      dataChars: data.consonants.concat(data.vowels)
+    });
   }
 
   loadRoundWords = async () => {
@@ -46,15 +48,21 @@ class KratzyWordtz extends Component {
     }
   }
 
+  addChar = (i) => {
+    this.setState({
+      createdWord: this.state.createdWord.concat(this.state.dataChars[i])
+
+    });
+  }
+
   renderGame = () => {
     switch (this.state.gameState) {
       case 0:
         return (
           <div className="kratzywordtz-default">
             <div>
-              <p className="large-text">{this.state.consText}</p>
-              <p className="large-text">{this.state.vowsText}</p>
-              <p className="large-text">{this.state.descText}</p>
+              <p className="large-text">Unten klicken</p>
+              <p className="large-text">um das Spiel zu beginnen :)</p>
             </div>
             <Button name="Spiel beginnen" className="default-button" onClick={() => {
               this.loadTask();
@@ -64,18 +72,20 @@ class KratzyWordtz extends Component {
         );
         break;
       case 1:
-      	let cards = [];
-       	let i=0;
-      	while(i < this.state.dataCons.length) {
-      		cards.push(<ClickableCard name={this.state.dataCons[i]}  className="large-text" id={i} onClick={() => {
-              disabled='true';
-            }}/>);
-      		i++;
-      	};
-        i=i-this.state.dataCons.length;
-      	while(i < this.state.dataVows.length) {
-      		cards.push(<ClickableCard name={this.state.dataVows[i]} className="large-text" id={i} />);
-      		i++;
+        let charCards = [];
+        const cs = this.state.charCardStyle;
+      	for(let i=0; i < this.state.dataChars.length; i++) {
+      		charCards.push(<ClickableCard name={this.state.dataChars[i]}  className="large-text" onClick={() => {
+            cs[i]={ color: "grey",
+                    transform: "none",
+                    boxShadow: "none"} 
+            this.setState({
+              charCardStyle: cs
+              })
+            this.addChar(i);
+            }}
+                style={this.state.charCardStyle[i]}  
+            />);
       	};
 
         return (
@@ -83,16 +93,28 @@ class KratzyWordtz extends Component {
             <div>
               <p className="large-text">{this.state.descText}</p>
               <div>
-                {cards}
+                {charCards}
               </div>
             </div>
-
             <div className="eingabe">
-              <TextCard className="eingabefeld" />
+              <TextCard className="eingabefeld large-text" name={this.state.createdWord}/>
               <button
                 type="button"
                 className="icon-button"
-                onClick={() => { }}>
+                onClick = {() => {
+                  const deletedChar = this.state.createdWord.pop()
+                  this.setState({
+                    createdWord: this.state.createdWord
+                  });
+                  for(let i=0; i < this.state.dataChars.length; i++){
+                    if(charCards[i].props.name === deletedChar){
+                        cs[i]={ }
+                        this.setState({
+                          charsCardStyle: cs
+                        });
+                    }
+                  }
+                }}>
                 <img
                   src={backspaceIcon}
                   alt="backspace"
@@ -147,7 +169,12 @@ class KratzyWordtz extends Component {
           <div>
             <p className="large-text">{"Punktestand: ..."}</p>
             <Button name="Neue Runde" className="default-button" onClick={() => {
-              this.setState({ consText: '', vowsText: '', descText: '' });
+              this.setState({
+                      descText: '', 
+                      charCardStyle: [],
+                      roundWords: [{}, {}],
+                      dataChars: [],
+                      createdWord: [], });
               this.updateGameState();
               this.loadTask();
             }} />
