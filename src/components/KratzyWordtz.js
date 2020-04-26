@@ -17,9 +17,9 @@ class KratzyWordtz extends Component {
       roundWordsAndDescs: [],
       shuffledRoundDescs: [],
       shuffledRoundWords: [],
-      coloredCardStyles: [{ backgroundColor: "#78cf78" }, { backgroundColor: "#7878cf" }, { backgroundColor: "#cf7878" },
-      { backgroundColor: "#333333" }, { backgroundColor: "#444444" }, { backgroundColor: "#555555" },
-      { backgroundColor: "#666666" }, { backgroundColor: "#777777" }],
+      coloredCardStyles: [{ backgroundColor: "#cfcb78" }, { backgroundColor: "#7878cf" }, { backgroundColor: "#cf7878" },
+      { backgroundColor: "#78cf78" }, { backgroundColor: "#78cfbf" }, { backgroundColor: "#78cfbf" },
+      { backgroundColor: "#a478cf" }, { backgroundColor: "#cf78c3" }],
       selectedCardColorWords: [],
       selectedCardColorDescs: [],
       wordClicked: false,
@@ -70,20 +70,20 @@ class KratzyWordtz extends Component {
   initSelectedCardColors = () => {
     const sccw = this.state.selectedCardColorWords;
     for (let i = 0; i < this.state.shuffledRoundWords.length; i++) {
-      sccw.push(0);
+      sccw.push(i);
     }
     const sccd = this.state.selectedCardColorDescs;
     for (let i = 0; i < this.state.shuffledRoundDescs.length; i++) {
-      sccw.push(0);
+      sccd.push(0);
     }
 
     const wcs = this.state.wordCardStyle;
     for (let i = 0; i < this.state.shuffledRoundWords.length; i++) {
-      wcs.push(this.state.coloredCardStyles[0]);
+      wcs.push(this.state.coloredCardStyles[this.state.selectedCardColorWords[i]]);
     }
     const dcs = this.state.descCardStyle;
     for (let i = 0; i < this.state.shuffledRoundDescs.length; i++) {
-      dcs.push(this.state.coloredCardStyles[0]);
+      dcs.push(this.state.coloredCardStyles[this.state.selectedCardColorDescs[i]]);
     }
 
     this.setState({ selectedCardColorWords: sccw, selectedCardColorDescs: sccd, wordCardStyle: wcs, descCardStyle: dcs });
@@ -111,21 +111,29 @@ class KratzyWordtz extends Component {
       const cs = this.state.wordCardStyle;
       const sccw = this.state.selectedCardColorWords;
       sccw[k] = sccw[k] + 1;
-      cs[k] = this.state.coloredCardStyles[sccw[k] + 1];
+      if (sccw[k] >= this.state.shuffledRoundWords.length) {
+        sccw[k] = 0;
+      }
+      cs[k] = this.state.coloredCardStyles[sccw[k]];
       this.setState({
         wordCardStyle: cs,
         selectedCardColorWords: sccw
       });
     } else /* is a Desc */ {
       const cs = this.state.descCardStyle;
-      const i = this.state.selectedCardColorDescs[k];
-      cs[k] = this.state.coloredCardStyles[i + 1];
+      const sccw = this.state.selectedCardColorDescs;
+      sccw[k] = sccw[k] + 1;
+      if (sccw[k] >= this.state.shuffledRoundDescs.length) {
+        sccw[k] = 0;
+      }
+      cs[k] = this.state.coloredCardStyles[sccw[k]];
       this.setState({
         descCardStyle: cs,
-        selectedCardColorDescs: i + 1
+        selectedCardColorDescs: sccw
       });
     }
   }
+
   addChar = (i) => {
     this.setState({
       createdWord: this.state.createdWord.concat(this.state.dataChars[i])
@@ -139,8 +147,8 @@ class KratzyWordtz extends Component {
         return (
           <div className="kratzywordtz-default">
             <div>
-              <p className="large-text">Unten klicken</p>
-              <p className="large-text">um das Spiel zu beginnen :)</p>
+              <p className="large-text">Klicken, um das</p>
+              <p className="large-text">Spiel zu beginnen</p>
             </div>
             <Button name="Spiel beginnen" className="default-button" onClick={() => {
               this.loadTask();
@@ -212,14 +220,14 @@ class KratzyWordtz extends Component {
         for (let k = 0; k < this.state.shuffledRoundWords.length; k++) {
           roundCards.push(
             <ClickableCard name={this.state.shuffledRoundWords[k]} className="large-text"
-              style={this.state.wordCardStyle[k]} onClick={() => {
-                this.manageCardStyles(true, k);
-              }} />
+              style={this.state.wordCardStyle[k]} />
           );
           roundCards.push(
-            <ClickableCard name={this.state.shuffledRoundDescs[k]} className="large-text"
+            <ClickableCard name={this.state.shuffledRoundDescs[k]} className="medium-text"
               style={this.state.descCardStyle[k]} onClick={() => {
                 this.manageCardStyles(false, k);
+                console.log(this.state.selectedCardColorWords);
+                console.log(this.state.selectedCardColorDescs);
               }} />
           );
         };
