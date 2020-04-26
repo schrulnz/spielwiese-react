@@ -13,28 +13,85 @@ class KratzyWordtz extends Component {
       consText: 'Unten klicken,',
       descText: 'um das Spiel zu starten',
       gameState: 0,
-      cardStyle: [],
-      roundWords: [{}, {}],
+      wordCardStyle: [],
+      descCardStyle: [],
+      roundWordsAndDescs: [],
+      shuffledRoundDescs: [],
+      shuffledRoundWords: [],
       dataCons: [],
-      dataVows: []
+      dataVows: [],
+      coloredCardStyles: [{ backgroundColor: "#78cf78" }, { backgroundColor: "#7878cf" }, { backgroundColor: "#cf7878" },
+      { backgroundColor: "#333333" }, { backgroundColor: "#444444" }, { backgroundColor: "#555555" },
+      { backgroundColor: "#666666" }, { backgroundColor: "#777777" }],
+      selectedCardColorWords: [],
+      selectedCardColorDescs: [],
+      wordClicked: false,
+      descClicked: false,
+      newPair: true
     };
   }
-
 
   loadTask = async () => {
     const getWordUrl = 'https://fierce-hollows-70925.herokuapp.com/kratzywordtz/new-round';
     const response = await fetch(getWordUrl);
     const data = await response.json();
-    console.log(data);
     this.setState({ consText: 'Konsonanten: ' + data.consonants, vowsText: 'Vokale: ' + data.vowels, descText: 'Beschreibung: ' + data.desc, dataCons: data.consonants, dataVows: data.vowels });
   }
 
-  loadRoundWords = async () => {
+  loadRoundWordsAndDescs = async () => {
     const getUrl = 'https://fierce-hollows-70925.herokuapp.com/kratzywordtz/state';
     const response = await fetch(getUrl);
     const data = await response.json();
-    console.log(data);
-    this.setState({ roundWords: data });
+    this.setState({ roundWordsAndDescs: data });
+
+    this.shuffleWordsAndDesc(data);
+  }
+
+  shuffleWordsAndDesc = (data) => {
+    let descs = [];
+    data.forEach(element => {
+      descs.push(element.desc);
+    });
+    descs = this.shuffle(descs);
+
+    let words = [];
+    data.forEach(element => {
+      words.push(element.word);
+    });
+    words = this.shuffle(words);
+    this.setState({ shuffledRoundWords: words, shuffledRoundDescs: descs }, () => {
+      this.initSelectedCardColors();
+    });
+  }
+
+  initSelectedCardColors = () => {
+    const sccw = this.state.selectedCardColorWords;
+    for (let i = 0; i < this.state.shuffledRoundWords.length; i++) {
+      sccw.push(0);
+    }
+    const sccd = this.state.selectedCardColorDescs;
+    for (let i = 0; i < this.state.shuffledRoundDescs.length; i++) {
+      sccw.push(0);
+    }
+
+    const wcs = this.state.wordCardStyle;
+    for (let i = 0; i < this.state.shuffledRoundWords.length; i++) {
+      wcs.push(this.state.coloredCardStyles[0]);
+    }
+    const dcs = this.state.descCardStyle;
+    for (let i = 0; i < this.state.shuffledRoundDescs.length; i++) {
+      dcs.push(this.state.coloredCardStyles[0]);
+    }
+
+    this.setState({ selectedCardColorWords: sccw, selectedCardColorDescs: sccd, wordCardStyle: wcs, descCardStyle: dcs });
+  }
+
+  shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
   }
 
   updateGameState = () => {
@@ -43,6 +100,27 @@ class KratzyWordtz extends Component {
       this.setState({ gameState: gameState + 1 });
     } else {
       this.setState({ gameState: 1 });
+    }
+  }
+
+  manageCardStyles = (isWord, k) => {
+    if (isWord) {
+      const cs = this.state.wordCardStyle;
+      const sccw = this.state.selectedCardColorWords;
+      sccw[k] = sccw[k] + 1;
+      cs[k] = this.state.coloredCardStyles[sccw[k] + 1];
+      this.setState({
+        wordCardStyle: cs,
+        selectedCardColorWords: sccw
+      });
+    } else /* is a Desc */ {
+      const cs = this.state.descCardStyle;
+      const i = this.state.selectedCardColorDescs[k];
+      cs[k] = this.state.coloredCardStyles[i + 1];
+      this.setState({
+        descCardStyle: cs,
+        selectedCardColorDescs: i + 1
+      });
     }
   }
 
@@ -100,42 +178,43 @@ class KratzyWordtz extends Component {
             {/* Card for the Word */}
             <Button name="Absenden" className="default-button" onClick={() => {
               this.updateGameState();
-              this.loadRoundWords();
             }} />
           </div>
         );
         break;
       case 2:
+        let roundCards = [];
+        let k = 0;
+        for (let k = 0; k < this.state.shuffledRoundWords.length; k++) {
+          roundCards.push(
+            <ClickableCard name={this.state.shuffledRoundWords[k]} className="large-text"
+              style={this.state.wordCardStyle[k]} onClick={() => {
+                this.manageCardStyles(true, k);
+              }} />
+          );
+          roundCards.push(
+            <ClickableCard name={this.state.shuffledRoundDescs[k]} className="large-text"
+              style={this.state.descCardStyle[k]} onClick={() => {
+                this.manageCardStyles(false, k);
+              }} />
+          );
+        };
+
         return (
           <div>
             <div className="select-result-grid">
               <p className="large-text">Wort</p>
               <p className="large-text">Bezeichnung</p>
-              <ClickableCard name={this.state.roundWords[0].word} className="large-text" onClick={() => {
-                const cs = this.state.cardStyle;
-                cs[0] = "#78cf7c";
-                this.setState({
-                  cardStyle: cs
-                })
-              }}
-                style={{ backgroundColor: this.state.cardStyle[0] }} />
-              <ClickableCard name={this.state.roundWords[0].desc} className="large-text" onClick={() => {
-                const cs = this.state.cardStyle;
-                cs[1] = "#78cf7c";
-                this.setState({
-                  cardStyle: cs
-                })
-              }}
-                style={{ backgroundColor: this.state.cardStyle[1] }} />
-              <ClickableCard name={"xyzjuheeeeeeee"} className="large-text" />
-              <ClickableCard name={"alphabeeeeeeet"} className="large-text" />
-              <ClickableCard name={"bllub"} className="large-text" />
-              <ClickableCard name={"xbbbbbbbbbbb"} className="large-text" />
-              <ClickableCard name={"asdfasdfasdfas"} className="large-text" />
-              <ClickableCard name={"asdfasdfasdfasdfasdf"} className="large-text" />
+              {roundCards}
             </div>
             <div>
-              <Button name="Bestätigen" className="default-button" onClick={this.updateGameState} />
+              <Button name="Bestätigen" className="default-button" onClick={() => {
+                this.updateGameState();
+                this.setState({ wordCardStyle: [], descCardStyle: [] });
+              }} />
+              <Button name="Aktualisieren" className="default-button" onClick={() => {
+                this.loadRoundWordsAndDescs();
+              }} />
             </div>
           </div>
         );
