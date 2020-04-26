@@ -46,16 +46,18 @@ class KratzyWordtz extends Component {
         break;
       case 1:
       	let cards = [];
-     	let i=0;
-     	let j=0;
-    	while(i < this.state.dataCons.length) {
-    		cards.push(<ClickableCard name={this.state.dataCons[i]}  className="large-text" id={"0"+i} />);
-    		i++;
-    	};
-    	while(j < this.state.dataVows.length) {
-    		cards.push(<ClickableCard name={this.state.dataVows[j]} className="large-text" id={"1"+j} />);
-    		j++;
-    	};
+       	let i=0;
+      	while(i < this.state.dataCons.length) {
+      		cards.push(<ClickableCard name={this.state.dataCons[i]}  className="large-text" id={i} onClick={() => {
+              disabled='true';
+            }}/>);
+      		i++;
+      	};
+        i=i-this.state.dataCons.length;
+      	while(i < this.state.dataVows.length) {
+      		cards.push(<ClickableCard name={this.state.dataVows[i]} className="large-text" id={i} />);
+      		i++;
+      	};
 
         return (
           <div className="kratzywordtz-default">
@@ -65,8 +67,9 @@ class KratzyWordtz extends Component {
               	{cards}
               </div>
             </div>
+
             <div className="eingabe">
-              <TextCard name={this.state.wordText} className="eingabefeld" />
+              <TextCard className="eingabefeld" />
               <button
                 type="button"
                 className="icon-button"
@@ -78,7 +81,6 @@ class KratzyWordtz extends Component {
                 />
               </button>
             </div>
-            {/* Card for the Word */}
             <Button name="Absenden" className="default-button" onClick={this.updateGameState} />
           </div>
         );
