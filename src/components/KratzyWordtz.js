@@ -69,13 +69,9 @@ class KratzyWordtz extends Component {
   }
 
   shuffleWordsAndDesc = (data) => {
-    console.log("data");
-    console.log(data);
     let descs = [];
     data.forEach(element => {
       descs.push(element.desc);
-      console.log("desc");
-      console.log(element.desc);
     });
     descs = this.shuffle(descs);
 
