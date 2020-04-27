@@ -19,9 +19,6 @@ class KratzyWordtz extends Component {
       shuffledRoundWords: [],
       selectedCardColorWords: [],
       selectedCardColorDescs: [],
-      wordClicked: false,
-      descClicked: false,
-      newPair: true,
       charCardStyle: [],
       dataChars: [],
       createdWord: [],
@@ -250,13 +247,13 @@ class KratzyWordtz extends Component {
         let k = 0;
         for (let k = 0; k < this.state.shuffledRoundDescs.length; k++) {
           roundCards.push(
-            <ClickableCard name={this.state.shuffledRoundDescs[k]} className="medium-text"
-              style={this.state.descCardStyle[k]} disabled={this.state.disableAllCards} />
+            <ClickableCard name={this.state.shuffledRoundDescs[k]} disabled={this.state.disableAllCards} 
+            className="medium-text" style={this.state.descCardStyle[k]} />
           );
           if (this.state.shuffledRoundWords[k]) {
             roundCards.push(
-              <ClickableCard name={this.state.shuffledRoundWords[k]} className="large-text"
-                style={this.state.wordCardStyle[k]} disabled={this.state.disableAllCards} onClick={() => {
+              <ClickableCard name={this.state.shuffledRoundWords[k]} disabled={this.state.disableAllCards} 
+              className="large-text" style={this.state.wordCardStyle[k]} onClick={() => {
                   this.manageCardStyles(true, k);
                 }} />
             );
@@ -302,9 +299,6 @@ class KratzyWordtz extends Component {
                 shuffledRoundWords: [],
                 selectedCardColorWords: [],
                 selectedCardColorDescs: [],
-                wordClicked: false,
-                descClicked: false,
-                newPair: true,
                 charCardStyle: [],
                 dataChars: [],
                 createdWord: [],
