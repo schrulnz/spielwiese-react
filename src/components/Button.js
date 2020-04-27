@@ -8,7 +8,8 @@ const Button = (props) => {
 				<button
 					type="button"
 					className={props.className}
-					onClick={props.onClick}>
+					onClick={props.onClick}
+					style={props.style}>
 					{props.name}
 				</button>
 			</form>
