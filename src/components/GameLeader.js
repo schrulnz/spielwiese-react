@@ -52,7 +52,7 @@ class GameLeader extends Component {
    render() {
       return (
          <div>
-            <h4 style={{ marginLeft: "2em", marginRight: "2em" }}>Um gleichzeitig mitzuspielen, bitte das eigentliche Spiel in einem zweiten Tab öffnen.</h4>
+            <h4 className="h4" style={{ marginLeft: "2em", marginRight: "2em" }}>Um gleichzeitig mitzuspielen, bitte das eigentliche Spiel in einem zweiten Tab öffnen.</h4>
             <div>
                <Button name="Neue Runde starten" className="default-button" style={{ height: "6rem", width: "20rem", marginTop: "3em" }} onClick={() => {
                   this.startNewRound();

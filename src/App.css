@@ -18,6 +18,10 @@
   font-family: 'Varela Round', sans-serif;
 }
 
+.h4 {
+  font-family: 'Varela Round', sans-serif;
+}
+
 .header-color {
   background: #ff4a00;  /* fallback for old browsers */
   background:linear-gradient(to right, #ffa500, #ff4a00);
