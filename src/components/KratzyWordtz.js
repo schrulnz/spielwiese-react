@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
 import Button from './Button';
 import ClickableCard from './ClickableCard';
+import GameLeader from './GameLeader';
 import TextCard from './TextCard';
 import backspaceIcon from '../resources/images/icons/backspace_100px.png';
 
@@ -22,7 +23,8 @@ class KratzyWordtz extends Component {
       charCardStyle: [],
       dataChars: [],
       createdWord: [],
-      disableAllCards: false
+      disableAllCards: false,
+      gameLeader: false
     };
 
     this.coloredCardStyles = [{ backgroundColor: "#cfcb78" }, { backgroundColor: "#7878cf" }, { backgroundColor: "#cf7878" },
@@ -42,7 +44,7 @@ class KratzyWordtz extends Component {
     });
   }
 
-  postResult = async (desc, word) => {
+  postResult = (desc, word) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({ "desc": desc, "word": word });
@@ -166,12 +168,17 @@ class KratzyWordtz extends Component {
         return (
           <div className="kratzywordtz-default">
             <div>
-              <h1>Kratzy Wordtz</h1>
-              <h2>Gleich geht's los!</h2>
+              <h1 className="h1">Kratzy Wordtz</h1>
+              <h2 className="h2">Gleich geht's los!</h2>
             </div>
             <Button name="Spiel starten" className="default-button" style={{ marginTop: "3em" }} onClick={() => {
               this.loadTask();
               this.updateGameState();
+            }} />
+            <Button name="Spielleiterin werden" className="secondary-button" style={{ marginTop: "3em" }} onClick={() => {
+              this.setState({
+                gameLeader: true
+              })
             }} />
           </div>
         );
@@ -243,13 +250,13 @@ class KratzyWordtz extends Component {
         let k = 0;
         for (let k = 0; k < this.state.shuffledRoundDescs.length; k++) {
           roundCards.push(
-            <ClickableCard name={this.state.shuffledRoundDescs[k]} disabled={this.state.disableAllCards} 
-            className="medium-text" style={this.state.descCardStyle[k]} />
+            <ClickableCard name={this.state.shuffledRoundDescs[k]} disabled={this.state.disableAllCards}
+              className="medium-text" style={this.state.descCardStyle[k]} />
           );
           if (this.state.shuffledRoundWords[k]) {
             roundCards.push(
-              <ClickableCard name={this.state.shuffledRoundWords[k]} disabled={this.state.disableAllCards} 
-              className="large-text" style={this.state.wordCardStyle[k]} onClick={() => {
+              <ClickableCard name={this.state.shuffledRoundWords[k]} disabled={this.state.disableAllCards}
+                className="large-text" style={this.state.wordCardStyle[k]} onClick={() => {
                   this.manageCardStyles(true, k);
                 }} />
             );
@@ -264,19 +271,24 @@ class KratzyWordtz extends Component {
               {roundCards}
             </div>
             <div style={{ marginBottom: "1.5em" }} >
-              {!this.state.disableAllCards &&
-                <Button name={"Aktualisieren"} className="default-button" onClick={() => {
-                  this.loadRoundWordsAndDescs();
-                }} />}
+              {(!this.state.disableAllCards && this.state.shuffledRoundDescs.length === 0) &&
+                <div>
+                  <p>Erst, wenn alle Mitspielerinnen bereit sind:</p>
+                  <Button name={"Aktualisieren"} className="default-button" onClick={() => {
+                    this.loadRoundWordsAndDescs();
+                  }} />
+                </div>}
 
-              <Button name={!this.state.disableAllCards ? "Bestätigen" : "Weiter"} className="default-button" onClick={() => {
-                if (!this.state.disableAllCards) {
-                  this.setState({ disableAllCards: true });
-                } else {
-                  this.updateGameState();
-                  this.setState({ wordCardStyle: [], descCardStyle: [] });
-                }
-              }} />
+              {!(this.state.shuffledRoundDescs.length === 0) &&
+                <Button name={!this.state.disableAllCards ? "Bestätigen" : "Weiter"} className="default-button" onClick={() => {
+                  if (!this.state.disableAllCards) {
+                    this.setState({ disableAllCards: true });
+                  } else {
+                    this.updateGameState();
+                    this.setState({ wordCardStyle: [], descCardStyle: [] });
+                  }
+                }} />
+              }
             </div>
           </div>
         );
@@ -317,7 +329,10 @@ class KratzyWordtz extends Component {
 
     return (
       <div className="default-background">
-        {this.renderGame()}
+        {!this.state.gameLeader &&
+          this.renderGame()}
+        {this.state.gameLeader &&
+          <GameLeader />}
       </div>
     );
   }

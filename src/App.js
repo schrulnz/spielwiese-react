@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="demo-big-content">
+      <div className="app">
         <Layout>
           <Header className="header-color" title={<Link style={{ textDecoration: 'none', color: 'white' }} to="/spielwiese-react/">
             <img

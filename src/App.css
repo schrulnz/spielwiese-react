@@ -1,3 +1,23 @@
+.app {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.default-font {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.h1 {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.h2 {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.h3 {
+  font-family: 'Varela Round', sans-serif;
+}
+
 .header-color {
   background: #ff4a00;  /* fallback for old browsers */
   background:linear-gradient(to right, #ffa500, #ff4a00);
@@ -51,6 +71,7 @@
   cursor: pointer;
   border: none;
   outline: none;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .default-button:hover {
@@ -58,6 +79,28 @@
 }
 
 .default-button:active {
+  background-color: #000050;
+  color: #ffffff;
+}
+
+.secondary-button {
+  width: 12rem;
+  height: 2rem;
+  border-radius: 5rem;
+  font-size: 1rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.secondary-button:hover {
+  background-color: #ffd6c5; 
+}
+
+.secondary-button:active {
   background-color: #000050;
   color: #ffffff;
 }
@@ -91,6 +134,7 @@
   transition: all .1s ease-in-out;
   border: none;
   outline: none;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .clickableCard:hover {
@@ -113,6 +157,7 @@
   /* justify-items: stretch; */
   padding-left: 5%;
   padding-right: 5%;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .TextCard {
@@ -123,6 +168,7 @@
   min-width: 250px;
   border: none;
   outline: none;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .eingabe{

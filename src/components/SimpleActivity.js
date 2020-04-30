@@ -42,8 +42,8 @@ class SimpleActivity extends Component {
       return (
         <div className="default-background">
           <div>
-            <h1>Simple Activity</h1>
-            <h2>Gleich geht's los!</h2>
+            <h1 className="h1">Simple Activity</h1>
+            <h2 className="h2">Gleich geht's los!</h2>
           </div>
           <Button name="Spiel starten" onClick={this.getActivity} className="default-button" />
         </div>
