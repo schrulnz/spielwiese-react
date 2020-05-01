@@ -60,7 +60,7 @@ class GameLeader extends Component {
                <p style={{ marginTop: "1em" }} >{this.state.resultStartNewRound}</p>
             </div>
             <div>
-               <Button name="Beschreibungen zurücksetzen" className="default-button" style={{ height: "6rem", width: "20rem", marginTop: "3em" }} onClick={() => {
+               <Button name="Beschreibungen zurücksetzen" className="default-button" style={{ height: "6rem", width: "20rem" }} onClick={() => {
                   this.resetAlreadyUsed();
                }} />
                <p style={{ marginTop: "1em" }} >{this.state.resultResetAlreadyUsed}</p>

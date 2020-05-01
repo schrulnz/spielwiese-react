@@ -5,6 +5,7 @@ import ClickableCard from './ClickableCard';
 import GameLeader from './GameLeader';
 import TextCard from './TextCard';
 import Styles from '../constants/Styles';
+import DesignConstants from '../constants/DesignConstants';
 import backspaceIcon from '../resources/images/icons/backspace_100px.png';
 
 class KratzyWordtz extends Component {
@@ -28,9 +29,15 @@ class KratzyWordtz extends Component {
       gameLeader: false
     };
 
-    this.coloredCardStyles = [{ backgroundColor: "#cfcb78" }, { backgroundColor: "#7878cf" }, { backgroundColor: "#cf7878" },
-    { backgroundColor: "#78cf78" }, { backgroundColor: "#78cfbf" }, { backgroundColor: "#cf9e78" },
-    { backgroundColor: "#a478cf" }, { backgroundColor: "#cf78c3" }];
+    // this.coloredCardStyles = [{ backgroundColor: "#cfcb78" }, { backgroundColor: "#7878cf" }, { backgroundColor: "#cf7878" },
+    // { backgroundColor: "#78cf78" }, { backgroundColor: "#78cfbf" }, { backgroundColor: "#cf9e78" },
+    // { backgroundColor: "#a478cf" }, { backgroundColor: "#cf78c3" }];
+    this.coloredCardStyles = [{ backgroundColor: "#ffadad" }, { backgroundColor: "#ffd6a5" }, { backgroundColor: "#fdffb6" },
+    { backgroundColor: "#caffbf" }, { backgroundColor: "#9bf6ff" }, { backgroundColor: "#a0c4ff" },
+    { backgroundColor: "#bdb2ff" }, { backgroundColor: "#ffc6ff" }, { backgroundColor: "#e5e5e5" }];
+    // this.coloredCardStyles = [{ backgroundColor: "#ff0000" }, { backgroundColor: "#ff7b00" }, { backgroundColor: "#ffee00" },
+    // { backgroundColor: "#9dff00" }, { backgroundColor: "#09ff00" }, { backgroundColor: "#00ffb3" },
+    // { backgroundColor: "#00aeff" }, { backgroundColor: "#003cff" }, { backgroundColor: "#6200ff" }, { backgroundColor: "#ea00ff" }, { backgroundColor: "#ff0095" }];
     this.defaultCardStyle = { backgroundColor: "#ffffff" };
   }
 
@@ -164,6 +171,16 @@ class KratzyWordtz extends Component {
   }
 
   renderGame = () => {
+    const isMobile = window.innerWidth <= 500;
+    let textDependingOnMobileStyle = {
+      fontSize: DesignConstants.mediumText,
+    };
+    if (isMobile) {
+      textDependingOnMobileStyle = {
+        fontSize: DesignConstants.smallText,
+      };
+    }
+
     switch (this.state.gameState) {
       case 0:
         return (
@@ -206,8 +223,8 @@ class KratzyWordtz extends Component {
         return (
           <div className="kratzywordtz-default">
             <div>
-              <p className="large-text">Beschreibung:</p>
-              <p className="large-text">{this.state.descText}</p>
+              <p className="small-text">Beschreibung:</p>
+              <p className="large-text" style={{ marginBottom: "2rem" }}>{this.state.descText}</p>
               <div className="char-cards-grid">
                 {charCards}
               </div>
@@ -252,12 +269,12 @@ class KratzyWordtz extends Component {
         for (let k = 0; k < this.state.shuffledRoundDescs.length; k++) {
           roundCards.push(
             <ClickableCard name={this.state.shuffledRoundDescs[k]} disabled={this.state.disableAllCards}
-              className="medium-text" style={this.state.descCardStyle[k]} />
+              style={{...this.state.descCardStyle[k], ...textDependingOnMobileStyle}} />
           );
           if (this.state.shuffledRoundWords[k]) {
             roundCards.push(
               <ClickableCard name={this.state.shuffledRoundWords[k]} disabled={this.state.disableAllCards}
-                className="large-text" style={this.state.wordCardStyle[k]} onClick={() => {
+                style={{...this.state.wordCardStyle[k], ...textDependingOnMobileStyle}} onClick={() => {
                   this.manageCardStyles(true, k);
                 }} />
             );
@@ -267,21 +284,21 @@ class KratzyWordtz extends Component {
         return (
           <div>
             <div className="select-result-grid">
-              <p style={{ marginTop: "1.5em" }} className="large-text">{(this.state.shuffledRoundDescs.length > 0) && "Bezeichnungen"}</p>
-              <p style={{ marginTop: "1.5em" }} className="large-text">{(this.state.shuffledRoundWords.length > 0) && "Wörter"}</p>
+              <p style={{ marginTop: "2em", ...textDependingOnMobileStyle }}>{(this.state.shuffledRoundDescs.length > 0) && "Bezeichnungen"}</p>
+              <p style={{ marginTop: "2em", ...textDependingOnMobileStyle }}>{(this.state.shuffledRoundWords.length > 0) && "Wörter"}</p>
               {roundCards}
             </div>
             <div style={{ marginBottom: "1.5em" }} >
               {(!this.state.disableAllCards && this.state.shuffledRoundDescs.length === 0) &&
                 <div>
-                  <p>Erst, wenn alle Mitspielerinnen bereit sind:</p>
+                  <p className="small-text">Erst, wenn alle anderen bereit sind:</p>
                   <Button name={"Aktualisieren"} className="default-button" onClick={() => {
                     this.loadRoundWordsAndDescs();
                   }} />
                 </div>}
 
               {!(this.state.shuffledRoundDescs.length === 0) &&
-                <Button name={!this.state.disableAllCards ? "Bestätigen" : "Weiter"} className="default-button" onClick={() => {
+                <Button name={!this.state.disableAllCards ? "Bestätigen" : "Weiter"} className="default-button" style={{marginTop: "1rem"}} onClick={() => {
                   if (!this.state.disableAllCards) {
                     this.setState({ disableAllCards: true });
                   } else {
@@ -327,8 +344,6 @@ class KratzyWordtz extends Component {
   }
 
   render() {
-    console.log(Styles.largeText);
-
     return (
       <div className="default-background">
         {!this.state.gameLeader &&
