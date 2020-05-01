@@ -50,7 +50,13 @@
 }
 
 .medium-text {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  /* align-self: center; */
+  /* align-items: center; */
+  /* align-content: center; */
+  /* justify-content: center; */
+  /* justify-items: center; */
+  /* justify-self: center; */
 }
 
 .activity-image-container {
@@ -130,8 +136,9 @@
 }
 
 .clickableCard {
-  padding: 2em 3em 1em 3em;
-  margin: 2em;
+  /* padding: 2em 3em 1em 3em; */
+  /* padding: 1em; */
+  margin: 0.5rem;
   cursor: pointer;
   border-radius: 5px;
   box-shadow: 0 0 10px black;
@@ -139,6 +146,7 @@
   border: none;
   outline: none;
   font-family: 'Varela Round', sans-serif;
+  font-size: 2rem;
 }
 
 .clickableCard:hover {
@@ -164,12 +172,16 @@
   font-family: 'Varela Round', sans-serif;
 }
 
-.TextCard {
+.text-card {
   background-color: white;
-  padding: 2em 3em 1em 3em;
-  margin: 3em;
+  padding: 1em 1em 1em 1em;
+  margin-left: 2em;
+  margin-right: 1em;
+  margin-top: 3em;
+  margin-bottom: 3em;
   box-shadow: 0 0 10px black;
-  min-width: 250px;
+  min-width: 230px;
+  height: 25px;
   border: none;
   outline: none;
   font-family: 'Varela Round', sans-serif;
@@ -183,16 +195,10 @@
 }
 
 .eingabefeld{
-  width: 200px;
-  text-align: right;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  text-justify: center;
 }
-
-
-
-
-
-
-
-
-
-

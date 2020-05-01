@@ -4,6 +4,7 @@ import Button from './Button';
 import ClickableCard from './ClickableCard';
 import GameLeader from './GameLeader';
 import TextCard from './TextCard';
+import Styles from '../constants/Styles';
 import backspaceIcon from '../resources/images/icons/backspace_100px.png';
 
 class KratzyWordtz extends Component {
@@ -187,7 +188,7 @@ class KratzyWordtz extends Component {
         let charCards = [];
         const cs = this.state.charCardStyle;
         for (let i = 0; i < this.state.dataChars.length; i++) {
-          charCards.push(<ClickableCard name={this.state.dataChars[i]} className="large-text" onClick={() => {
+          charCards.push(<ClickableCard name={this.state.dataChars[i]} className="medium-text" onClick={() => {
             cs[i] = {
               color: "grey",
               transform: "none",
@@ -212,7 +213,7 @@ class KratzyWordtz extends Component {
               </div>
             </div>
             <div className="eingabe">
-              <TextCard className="eingabefeld large-text" name={this.state.createdWord} />
+              <TextCard className="eingabefeld medium-text" name={this.state.createdWord} />
               <button
                 type="button"
                 className="icon-button"
@@ -326,6 +327,7 @@ class KratzyWordtz extends Component {
   }
 
   render() {
+    console.log(Styles.largeText);
 
     return (
       <div className="default-background">
