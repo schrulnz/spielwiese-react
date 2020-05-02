@@ -186,7 +186,7 @@ class KratzyWordtz extends Component {
         return (
           <div className="kratzywordtz-default">
             <div>
-              <h1 className="h1">Kratzy Wordtz</h1>
+              <h1 className="h1">Crasy Wordtz</h1>
               <h2 className="h2">Gleich geht's los!</h2>
             </div>
             <Button name="Spiel starten" className="default-button" style={{ marginTop: "3em" }} onClick={() => {

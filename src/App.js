@@ -28,7 +28,7 @@ class App extends Component {
             /></Link>} scroll>
             <Navigation>
               <Link to="/spielwiese-react/simpleactivity/">Simple Activity</Link>
-              <Link to="/spielwiese-react/kratzywordtz/">Kratzy Wordtz</Link>
+              <Link to="/spielwiese-react/kratzywordtz/">Crasy Wordtz</Link>
             </Navigation>
           </Header>
           <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }} to="/spielwiese-react/"><img
@@ -38,7 +38,7 @@ class App extends Component {
             /></Link>}>
             <Navigation>
               <Link to="/spielwiese-react/simpleactivity/" onClick={() => this.hideToggle()}>Simple Activity</Link>
-              <Link to="/spielwiese-react/kratzywordtz/" onClick={() => this.hideToggle()}>Kratzy Wordtz</Link>
+              <Link to="/spielwiese-react/kratzywordtz/" onClick={() => this.hideToggle()}>Crasy Wordtz</Link>
             </Navigation>
           </Drawer>
           <Content>
