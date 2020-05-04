@@ -2,8 +2,8 @@
 
 const CommunicationConstants = {
    // Testing:
-   DOMAIN: "http://localhost:3000/",
-   // DOMAIN: "https://fierce-hollows-70925.herokuapp.com/",
+   // DOMAIN: "http://localhost:3000/",
+   DOMAIN: "https://fierce-hollows-70925.herokuapp.com/",
    
    CRASY_WORDTZ_NEW_ROUND: "kratzywordtz/new-round",
    CRASY_WORDTZ_RESULT: "kratzywordtz/result",
