@@ -48,7 +48,7 @@ class KratzyWordtz extends Component {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/kratzywordtz/state", requestOptions)
+    fetch(CommunicationConstants.DOMAIN + CommunicationConstants.CRASY_WORDTZ_STATE, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
