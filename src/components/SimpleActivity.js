@@ -5,6 +5,7 @@ import TextCard from './TextCard';
 import paintPic from '../resources/images/paint.png';
 import pantomimePic from '../resources/images/pantomime.png';
 import describePic from '../resources/images/describe.png';
+import CommunicationConstants from '../constants/CommunicationConstants';
 
 class SimpleActivity extends Component {
   constructor() {
@@ -19,7 +20,7 @@ class SimpleActivity extends Component {
 
 
   getActivity = async () => {
-    const getWordUrl = 'https://fierce-hollows-70925.herokuapp.com/activity/word';
+    const getWordUrl = CommunicationConstants.DOMAIN + CommunicationConstants.ACTIVITY_WORD;
     const response = await fetch(getWordUrl);
     const data = await response.json();
 

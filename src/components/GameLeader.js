@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CommunicationConstants from '../constants/CommunicationConstants';
 import Button from './Button';
 
 class GameLeader extends Component {
@@ -12,14 +13,15 @@ class GameLeader extends Component {
    }
 
    startNewRound = async () => {
-      this.setState({ resultStartNewRound: '...' });
+    const stateUrl = CommunicationConstants.DOMAIN + CommunicationConstants.CRASY_WORDTZ_STATE;
+    this.setState({ resultStartNewRound: '...' });
       this.setState({ resultResetAlreadyUsed: ' ' });
       const requestOptions = {
          method: 'DELETE',
          redirect: 'follow'
       };
 
-      fetch("https://fierce-hollows-70925.herokuapp.com/kratzywordtz/state", requestOptions)
+      fetch(stateUrl, requestOptions)
          .then(response => response.text())
          .then((result) => {
             this.setState({ resultStartNewRound: result });
@@ -31,14 +33,15 @@ class GameLeader extends Component {
    }
 
    resetAlreadyUsed = async () => {
-      this.setState({ resultResetAlreadyUsed: '...' });
+    const url = CommunicationConstants.DOMAIN + CommunicationConstants.CRASY_WORDTZ_ALREADY_USED;
+    this.setState({ resultResetAlreadyUsed: '...' });
       this.setState({ resultStartNewRound: ' ' });
       const requestOptions = {
          method: 'DELETE',
          redirect: 'follow'
       };
 
-      fetch("https://fierce-hollows-70925.herokuapp.com/kratzywordtz/already-used", requestOptions)
+      fetch(url, requestOptions)
          .then(response => response.text())
          .then((result) => {
             this.setState({ resultResetAlreadyUsed: result });
@@ -57,13 +60,13 @@ class GameLeader extends Component {
                <Button name="Neue Runde starten" className="default-button" style={{ height: "6rem", width: "20rem", marginTop: "3em" }} onClick={() => {
                   this.startNewRound();
                }} />
-               <p style={{ marginTop: "1em" }} >{this.state.resultStartNewRound}</p>
+               <p style={{ marginTop: "1em", color: "white" }} >{this.state.resultStartNewRound}</p>
             </div>
             <div>
-               <Button name="Beschreibungen zurücksetzen" className="default-button" style={{ height: "6rem", width: "20rem" }} onClick={() => {
+               <Button name="Beschreibungen zurücksetzen" className="secondary-button" style={{ height: "4rem"}} onClick={() => {
                   this.resetAlreadyUsed();
                }} />
-               <p style={{ marginTop: "1em" }} >{this.state.resultResetAlreadyUsed}</p>
+               <p style={{ marginTop: "1em", color: "white" }} >{this.state.resultResetAlreadyUsed}</p>
             </div>
          </div>
       );
